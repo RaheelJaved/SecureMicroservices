@@ -23,35 +23,35 @@ namespace IdentityServer
                         },
                         AllowedScopes = { "movieAPI" }
                    },
-                   //new Client
-                   //{
-                   //    ClientId = "movies_mvc_client",
-                   //    ClientName = "Movies MVC Web App",
-                   //    AllowedGrantTypes = GrantTypes.Hybrid,
-                   //    RequirePkce = false,
-                   //    AllowRememberConsent = false,
-                   //    RedirectUris = new List<string>()
-                   //    {
-                   //        "https://localhost:5002/signin-oidc"
-                   //    },
-                   //    PostLogoutRedirectUris = new List<string>()
-                   //    {
-                   //        "https://localhost:5002/signout-callback-oidc"
-                   //    },
-                   //    ClientSecrets = new List<Secret>
-                   //    {
-                   //        new Secret("secret".Sha256())
-                   //    },
-                   //    AllowedScopes = new List<string>
-                   //    {
-                   //        IdentityServerConstants.StandardScopes.OpenId,
-                   //        IdentityServerConstants.StandardScopes.Profile,
-                   //        IdentityServerConstants.StandardScopes.Address,
-                   //        IdentityServerConstants.StandardScopes.Email,
-                   //        "movieAPI",
-                   //        "roles"
-                   //    }
-                   //}
+                   new Client
+                   {
+                       ClientId = "movies_mvc_client",
+                       ClientName = "Movies MVC Web App",
+                       AllowedGrantTypes = GrantTypes.Code,
+                       RequirePkce = false,
+                       AllowRememberConsent = false,
+                       RedirectUris = new List<string>()
+                       {
+                           "https://localhost:5002/signin-oidc"
+                       },
+                       PostLogoutRedirectUris = new List<string>()
+                       {
+                           "https://localhost:5002/signout-callback-oidc"
+                       },
+                       ClientSecrets = new List<Secret>
+                       {
+                           new Secret("secret".Sha256())
+                       },
+                       AllowedScopes = new List<string>
+                       {
+                           IdentityServerConstants.StandardScopes.OpenId,
+                           IdentityServerConstants.StandardScopes.Profile,
+                           //IdentityServerConstants.StandardScopes.Address,
+                           //IdentityServerConstants.StandardScopes.Email,
+                           //"movieAPI",
+                           //"roles"
+                       }
+                   }
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -84,7 +84,7 @@ namespace IdentityServer
             {
                 new TestUser
                 {
-                    SubjectId = "5BE86359-073C-434B-AD2D-A3932222DABE",
+                    SubjectId = "00000000-0000-0000-0000-000000000001",
                     Username = "testuser",
                     Password = "password",
                     Claims = new List<Claim>
