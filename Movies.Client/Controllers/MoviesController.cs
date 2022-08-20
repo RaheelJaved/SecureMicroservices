@@ -48,14 +48,16 @@ namespace Movies.Client.Controllers
         }
 
         // GET: Movies/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            return View();
+        public async Task<IActionResult> Details(string id)
+        { 
 
-            //if (id == null || _context.Movie == null)
-            //{
-            //    return NotFound();
-            //}
+            if(string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+
+            var movie = await _moviesApiService.GetMovie(id);
+            return View(movie);
 
             //var movie = await _context.Movie
             //    .FirstOrDefaultAsync(m => m.Id == id);
