@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Net.Http.Headers;
 using Movies.Client.HttpHandlers;
 using IdentityModel.Client;
+using IdentityModel;
 
 namespace Movies.Client
 {
@@ -32,24 +33,23 @@ namespace Movies.Client
                 //options.Scope.Add("profile");
                 options.Scope.Add("address");
                 options.Scope.Add("email");
-                //options.Scope.Add("roles");
+                options.Scope.Add("roles");
+                options.Scope.Add("movieAPI");
 
                 //options.ClaimActions.DeleteClaim("sid");
                 //options.ClaimActions.DeleteClaim("idp");
                 //options.ClaimActions.DeleteClaim("s_hash");
                 //options.ClaimActions.DeleteClaim("auth_time");
-                //options.ClaimActions.MapUniqueJsonKey("role", "role");
-
-                options.Scope.Add("movieAPI");
+                options.ClaimActions.MapUniqueJsonKey("role", "role");
 
                 options.SaveTokens = true;
                 options.GetClaimsFromUserInfoEndpoint = true;
 
-                //options.TokenValidationParameters = new TokenValidationParameters
-                //{
-                //    NameClaimType = JwtClaimTypes.GivenName,
-                //    RoleClaimType = JwtClaimTypes.Role
-                //};
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = JwtClaimTypes.GivenName,
+                    RoleClaimType = JwtClaimTypes.Role
+                };
             });
 
 
