@@ -65,13 +65,13 @@ namespace Movies.Client
 
             services.AddHttpContextAccessor();
 
-            ////HttpClient to access IdentityServer
-            //services.AddHttpClient("IDPClient", client =>
-            //{
-            //    client.BaseAddress = new Uri("https://localhost:5005/");
-            //    client.DefaultRequestHeaders.Clear();
-            //    client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
-            //});
+            //HttpClient to access IdentityServer
+            services.AddHttpClient("IDClient", client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5005/");
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+            });
 
             //services.AddSingleton(new ClientCredentialsTokenRequest
             //{

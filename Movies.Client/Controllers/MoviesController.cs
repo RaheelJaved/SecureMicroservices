@@ -20,7 +20,12 @@ namespace Movies.Client.Controllers
             _moviesApiService = moviesApiService ?? throw new ArgumentNullException(nameof(moviesApiService));
         }
 
-
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Admin()
+        {
+            var userInfo = await _moviesApiService.GetUserInfo();
+            return View(userInfo);
+        }
 
         // GET: Movies
         public async Task<IActionResult> Index()
