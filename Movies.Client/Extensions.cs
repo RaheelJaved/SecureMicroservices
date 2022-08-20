@@ -26,7 +26,7 @@ namespace Movies.Client
 
                 options.ClientId = "movies_mvc_client";
                 options.ClientSecret = "secret";
-                options.ResponseType = "code";
+                options.ResponseType = "code id_token";
 
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
@@ -40,7 +40,7 @@ namespace Movies.Client
                 //options.ClaimActions.DeleteClaim("auth_time");
                 //options.ClaimActions.MapUniqueJsonKey("role", "role");
 
-                //options.Scope.Add("movieAPI");
+                options.Scope.Add("movieAPI");
 
                 options.SaveTokens = true;
                 options.GetClaimsFromUserInfoEndpoint = true;
@@ -63,21 +63,23 @@ namespace Movies.Client
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
             }).AddHttpMessageHandler<AuthenticationDelegatingHandler>();
 
-            //HttpClient to access IdentityServer
-            services.AddHttpClient("IDPClient", client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:5005/");
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
-            });
+            services.AddHttpContextAccessor();
 
-            services.AddSingleton(new ClientCredentialsTokenRequest
-            {
-                Address = "https://localhost:5005/connect/token",
-                ClientId = "movieClient",
-                ClientSecret = "secret",
-                Scope = "movieAPI"
-            });
+            ////HttpClient to access IdentityServer
+            //services.AddHttpClient("IDPClient", client =>
+            //{
+            //    client.BaseAddress = new Uri("https://localhost:5005/");
+            //    client.DefaultRequestHeaders.Clear();
+            //    client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+            //});
+
+            //services.AddSingleton(new ClientCredentialsTokenRequest
+            //{
+            //    Address = "https://localhost:5005/connect/token",
+            //    ClientId = "movieClient",
+            //    ClientSecret = "secret",
+            //    Scope = "movieAPI"
+            //});
 
             return services;
         }

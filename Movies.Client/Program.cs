@@ -9,7 +9,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IMovieApiService, MovieApiService>();
 builder.Services.AddAuthentication();
 builder.Services.SetupAuthentication();
-builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
